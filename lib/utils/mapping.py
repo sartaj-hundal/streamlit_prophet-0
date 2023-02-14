@@ -1,7 +1,5 @@
 from typing import Any, Dict, List, Tuple
 
-from lib.utils.holidays import get_school_holidays_FR
-
 COUNTRY_NAMES_MAPPING = {
     "FR": "France",
     "US": "United States",
@@ -27,11 +25,6 @@ COVID_LOCKDOWN_DATES_MAPPING = {
         ("2021-03-20", "2021-05-03"),
     ]
 }
-
-SCHOOL_HOLIDAYS_FUNC_MAPPING = {
-    "FR": get_school_holidays_FR,
-}
-
 
 def convert_into_nb_of_days(freq: str, horizon: int) -> int:
     """Converts a forecasting horizon in number of days.
