@@ -3,12 +3,12 @@ from typing import Any, Dict, Optional, Tuple
 import pandas as pd
 from prophet import Prophet
 from prophet.diagnostics import cross_validation
-from streamlit_prophet.lib.dataprep.clean import exp_transform
-from streamlit_prophet.lib.dataprep.format import check_future_regressors_df
-from streamlit_prophet.lib.dataprep.split import make_eval_df, make_future_df
-from streamlit_prophet.lib.exposition.preparation import get_df_cv_with_hist
-from streamlit_prophet.lib.models.preparation import add_prophet_holidays, get_prophet_cv_horizon
-from streamlit_prophet.lib.utils.logging import suppress_stdout_stderr
+from lib.dataprep.clean import exp_transform
+from lib.dataprep.format import check_future_regressors_df
+from lib.dataprep.split import make_eval_df, make_future_df
+from lib.exposition.preparation import get_df_cv_with_hist
+from lib.models.preparation import add_prophet_holidays, get_prophet_cv_horizon
+from lib.utils.logging import suppress_stdout_stderr
 
 
 def instantiate_prophet_model(

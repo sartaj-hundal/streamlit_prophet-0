@@ -2,7 +2,7 @@ from typing import Any, Dict
 
 import plotly.graph_objects as go
 import streamlit as st
-from streamlit_prophet.lib.exposition.preparation import get_cv_dates_dict, get_hover_template_cv
+from lib.exposition.preparation import get_cv_dates_dict, get_hover_template_cv
 
 
 def plot_cv_dates(

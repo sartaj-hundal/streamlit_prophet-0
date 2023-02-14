@@ -2,8 +2,8 @@ from typing import Any, Dict, Tuple
 
 import pandas as pd
 import streamlit as st
-from streamlit_prophet.lib.exposition.export import display_config_download_links
-from streamlit_prophet.lib.utils.load import download_toy_dataset, load_custom_config, load_dataset
+from lib.exposition.export import display_config_download_links
+from lib.utils.load import download_toy_dataset, load_custom_config, load_dataset
 
 
 def input_dataset(

@@ -10,15 +10,15 @@ import streamlit as st
 from plotly.subplots import make_subplots
 from prophet import Prophet
 from prophet.plot import plot_plotly
-from streamlit_prophet.lib.evaluation.metrics import get_perf_metrics
-from streamlit_prophet.lib.evaluation.preparation import get_evaluation_df
-from streamlit_prophet.lib.exposition.expanders import (
+from lib.evaluation.metrics import get_perf_metrics
+from lib.evaluation.preparation import get_evaluation_df
+from lib.exposition.expanders import (
     display_expander,
     display_expanders_performance,
 )
-from streamlit_prophet.lib.exposition.preparation import get_forecast_components, prepare_waterfall
-from streamlit_prophet.lib.inputs.dates import input_waterfall_dates
-from streamlit_prophet.lib.utils.misc import reverse_list
+from lib.exposition.preparation import get_forecast_components, prepare_waterfall
+from lib.inputs.dates import input_waterfall_dates
+from lib.utils.misc import reverse_list
 
 
 def plot_overview(

@@ -13,7 +13,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 import toml
-from streamlit_prophet.lib.utils.load import get_project_root
+from lib.utils.load import get_project_root
 
 
 def get_dataframe_download_link(df: pd.DataFrame, filename: str, linkname: str) -> str:

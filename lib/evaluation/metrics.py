@@ -4,8 +4,8 @@ from datetime import timedelta
 
 import numpy as np
 import pandas as pd
-from streamlit_prophet.lib.evaluation.preparation import add_time_groupers
-from streamlit_prophet.lib.utils.mapping import convert_into_nb_of_days, convert_into_nb_of_seconds
+from lib.evaluation.preparation import add_time_groupers
+from lib.utils.mapping import convert_into_nb_of_days, convert_into_nb_of_seconds
 
 
 def MAPE(y_true: pd.Series, y_pred: pd.Series) -> float:

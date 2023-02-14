@@ -5,7 +5,7 @@ from datetime import timedelta
 
 import pandas as pd
 import streamlit as st
-from streamlit_prophet.lib.dataprep.split import (
+from lib.dataprep.split import (
     get_cv_cutoffs,
     get_max_possible_cv_horizon,
     get_train_end_date_default_value,
@@ -13,7 +13,7 @@ from streamlit_prophet.lib.dataprep.split import (
     print_forecast_dates,
     raise_error_cv_dates,
 )
-from streamlit_prophet.lib.utils.mapping import (
+from lib.utils.mapping import (
     convert_into_nb_of_days,
     convert_into_nb_of_seconds,
     mapping_freq_names,
