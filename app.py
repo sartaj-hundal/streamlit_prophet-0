@@ -19,6 +19,15 @@ def run_query(query):
         cur.execute(query)
         return cur.fetchall()
 
-rows = run_query("SELECT current_version()")
+# rows = run_query("SELECT current_version()")
 # one_row = rows.fetchone()
-print(rows[0])
+# print(rows[0])
+
+cs = conn.cursor()
+try:
+    cs.execute("SELECT current_version()")
+    one_row = cs.fetchone()
+    print(one_row[0])
+finally:
+    cs.close()
+ctx.close()
