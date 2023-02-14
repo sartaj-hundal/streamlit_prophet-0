@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Tuple
 
-from streamlit_prophet.lib.utils.holidays import get_school_holidays_FR
+from lib.utils.holidays import get_school_holidays_FR
 
 COUNTRY_NAMES_MAPPING = {
     "FR": "France",
