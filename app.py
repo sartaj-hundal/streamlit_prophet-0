@@ -21,4 +21,4 @@ def run_query(query):
 
 rows = run_query("SELECT current_version()")
 # one_row = rows.fetchone()
-print(rows)
+print(rows[0])
