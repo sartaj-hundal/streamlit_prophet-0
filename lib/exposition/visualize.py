@@ -10,7 +10,6 @@ import streamlit as st
 from plotly.subplots import make_subplots
 from prophet import Prophet
 from prophet.plot import plot_plotly
-from lib.evaluation.metrics import get_perf_metrics
 from lib.evaluation.preparation import get_evaluation_df
 from lib.exposition.expanders import (
     display_expander,
