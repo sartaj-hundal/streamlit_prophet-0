@@ -30,4 +30,4 @@ try:
     print(one_row[0])
 finally:
     cs.close()
-ctx.close()
+cs.close()
