@@ -5,9 +5,9 @@ from datetime import datetime, timedelta
 
 import pandas as pd
 import streamlit as st
-from streamlit_prophet.lib.dataprep.clean import clean_future_df
-from streamlit_prophet.lib.dataprep.format import prepare_future_df
-from streamlit_prophet.lib.utils.mapping import convert_into_nb_of_days, convert_into_nb_of_seconds
+from lib.dataprep.clean import clean_future_df
+from lib.dataprep.format import prepare_future_df
+from lib.utils.mapping import convert_into_nb_of_days, convert_into_nb_of_seconds
 
 
 def get_train_val_sets(
