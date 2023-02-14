@@ -2,7 +2,6 @@ from typing import Any, Dict
 
 import pandas as pd
 from prophet import Prophet
-from lib.utils.holidays import lockdown_format_func
 from lib.utils.mapping import (
     COVID_LOCKDOWN_DATES_MAPPING,
     SCHOOL_HOLIDAYS_FUNC_MAPPING,
