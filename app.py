@@ -19,8 +19,6 @@ def run_query(query):
         cur.execute(query)
         return cur.fetchall()
 
-rows = run_query("SELECT * from DIM_FOOD limit 10;")
-
-# Print results.
-for row in rows:
-    st.write(f"{row[0]} has a :{row[1]}:")
+rows = run_query("SELECT current_version()")
+one_row = rows.fetchone()
+print(one_row[0])
