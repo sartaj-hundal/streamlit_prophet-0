@@ -20,5 +20,5 @@ def run_query(query):
         return cur.fetchall()
 
 rows = run_query("SELECT current_version()")
-one_row = rows.fetchone()
-print(one_row[0])
+# one_row = rows.fetchone()
+print(rows)
