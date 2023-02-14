@@ -5,8 +5,6 @@ from datetime import timedelta
 import numpy as np
 import pandas as pd
 from lib.evaluation.preparation import add_time_groupers
-from lib.utils.mapping import convert_into_nb_of_days, convert_into_nb_of_seconds
-
 
 def MAPE(y_true: pd.Series, y_pred: pd.Series) -> float:
     """Computes Mean Absolute Percentage Error (MAPE). Must be multiplied by 100 to get percentage.
@@ -126,47 +124,6 @@ def MAE(y_true: pd.Series, y_pred: pd.Series) -> float:
         return 0 if np.isnan(mae) else float(mae)
     except:
         return 0
-
-
-def get_perf_metrics(
-    evaluation_df: pd.DataFrame,
-    eval: Dict[Any, Any],
-    dates: Dict[Any, Any],
-    resampling: Dict[Any, Any],
-    use_cv: bool,
-    config: Dict[Any, Any],
-) -> Tuple[pd.DataFrame, Dict[Any, Any]]:
-    """Computes all metrics to gather them in a dataframe and a dictionary.
-
-    Parameters
-    ----------
-    evaluation_df : pd.DataFrame
-        Evaluation dataframe.
-    eval : Dict
-        Evaluation specifications.
-    dates : Dict
-        Dictionary containing all dates information.
-    resampling : Dict
-        Resampling specifications.
-    use_cv : bool
-        Whether or note cross-validation is used.
-    config : Dict
-        Lib configuration dictionary.
-
-    Returns
-    -------
-    pd.DataFrame
-        Dataframe with all metrics at the desired granularity.
-    dict
-        Dictionary with all metrics at the desired granularity.
-    """
-    df = _preprocess_eval_df(evaluation_df, use_cv)
-    metrics_df = _compute_metrics(df, eval)
-    metrics_df, metrics_dict = _format_eval_results(
-        metrics_df, dates, eval, resampling, use_cv, config
-    )
-    return metrics_df, metrics_dict
-
 
 def _preprocess_eval_df(evaluation_df: pd.DataFrame, use_cv: bool) -> pd.DataFrame:
     """Preprocesses evaluation dataframe.
