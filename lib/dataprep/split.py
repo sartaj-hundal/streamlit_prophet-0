@@ -7,8 +7,6 @@ import pandas as pd
 import streamlit as st
 from lib.dataprep.clean import clean_future_df
 from lib.dataprep.format import prepare_future_df
-from lib.utils.mapping import convert_into_nb_of_days, convert_into_nb_of_seconds
-
 
 def get_train_val_sets(
     df: pd.DataFrame, dates: Dict[Any, Any], config: Dict[Any, Any], datasets: Dict[Any, Any]
