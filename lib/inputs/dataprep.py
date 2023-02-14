@@ -2,7 +2,7 @@ from typing import Any, Dict, List
 
 import pandas as pd
 import streamlit as st
-from streamlit_prophet.lib.utils.mapping import dayname_to_daynumber
+from lib.utils.mapping import dayname_to_daynumber
 
 
 def input_cleaning(

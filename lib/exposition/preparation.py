@@ -6,7 +6,7 @@ from datetime import timedelta
 
 import pandas as pd
 from prophet import Prophet
-from streamlit_prophet.lib.utils.mapping import convert_into_nb_of_days, convert_into_nb_of_seconds
+from lib.utils.mapping import convert_into_nb_of_days, convert_into_nb_of_seconds
 
 
 def get_forecast_components(

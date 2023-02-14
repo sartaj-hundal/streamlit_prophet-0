@@ -10,15 +10,14 @@ import streamlit as st
 from plotly.subplots import make_subplots
 from prophet import Prophet
 from prophet.plot import plot_plotly
-from streamlit_prophet.lib.evaluation.metrics import get_perf_metrics
-from streamlit_prophet.lib.evaluation.preparation import get_evaluation_df
-from streamlit_prophet.lib.exposition.expanders import (
+from lib.evaluation.preparation import get_evaluation_df
+from lib.exposition.expanders import (
     display_expander,
     display_expanders_performance,
 )
-from streamlit_prophet.lib.exposition.preparation import get_forecast_components, prepare_waterfall
-from streamlit_prophet.lib.inputs.dates import input_waterfall_dates
-from streamlit_prophet.lib.utils.misc import reverse_list
+from lib.exposition.preparation import get_forecast_components, prepare_waterfall
+from lib.inputs.dates import input_waterfall_dates
+from lib.utils.misc import reverse_list
 
 
 def plot_overview(
@@ -143,77 +142,6 @@ def plot_performance(
     return report
 
 
-def plot_components(
-    use_cv: bool,
-    make_future_forecast: bool,
-    target_col: str,
-    models: Dict[Any, Any],
-    forecasts: Dict[Any, Any],
-    cleaning: Dict[Any, Any],
-    resampling: Dict[Any, Any],
-    config: Dict[Any, Any],
-    readme: Dict[Any, Any],
-    df: pd.DataFrame,
-    report: List[Dict[str, Any]],
-) -> List[Dict[str, Any]]:
-    """Plots a graph showing the different components of prediction, with explanations.
-
-    Parameters
-    ----------
-    use_cv : bool
-        Whether or not cross-validation is used.
-    make_future_forecast : bool
-        Whether or not a future forecast is made.
-    target_col : str
-        Name of target column.
-    models : Dict
-        Dictionary containing a model fitted on evaluation data.
-    forecasts : Dict
-        Dictionary containing evaluation forecasts.
-    cleaning : Dict
-        Cleaning specifications.
-    resampling : Dict
-        Resampling specifications (granularity, dataset frequency).
-    config : Dict
-        Cleaning specifications.
-    readme : Dict
-        Dictionary containing explanations about the graph.
-    df: pd.DataFrame
-        Dataframe containing the ground truth.
-    report: List[Dict[str, Any]]
-        List of all report components.
-    """
-    style = config["style"]
-    st.write("## Global impact")
-    display_expander(readme, "components", "More info on this plot")
-    if make_future_forecast:
-        forecast_df = forecasts["future"].copy()
-        model = models["future"]
-    elif use_cv:
-        forecast_df = forecasts["cv_with_hist"].copy()
-        forecast_df = forecast_df.loc[forecast_df["ds"] < forecasts["cv"].ds.min()]
-        model = models["eval"]
-    else:
-        forecast_df = forecasts["eval"].copy()
-        model = models["eval"]
-    fig1 = make_separate_components_plot(
-        model, forecast_df, target_col, cleaning, resampling, style
-    )
-    st.plotly_chart(fig1)
-
-    st.write("## Local impact")
-    display_expander(readme, "waterfall", "More info on this plot", True)
-    start_date, end_date = input_waterfall_dates(forecast_df, resampling)
-    fig2 = make_waterfall_components_plot(
-        model, forecast_df, start_date, end_date, target_col, cleaning, resampling, style, df
-    )
-    st.plotly_chart(fig2)
-
-    report.append({"object": fig1, "name": "global_components", "type": "plot"})
-    report.append({"object": fig2, "name": "local_components", "type": "plot"})
-    report.append({"object": df, "name": "model_input_data", "type": "dataset"})
-
-    return report
 
 
 def plot_future(

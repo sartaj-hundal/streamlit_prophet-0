@@ -2,13 +2,6 @@ from typing import Any, Dict, List
 
 import pandas as pd
 import streamlit as st
-from streamlit_prophet.lib.utils.holidays import lockdown_format_func
-from streamlit_prophet.lib.utils.mapping import (
-    COUNTRY_NAMES_MAPPING,
-    COVID_LOCKDOWN_DATES_MAPPING,
-    SCHOOL_HOLIDAYS_FUNC_MAPPING,
-)
-
 
 def input_seasonality_params(
     config: Dict[Any, Any],
@@ -189,70 +182,6 @@ def input_other_params(
             "floor": floor,
         }
     return params
-
-
-def input_holidays_params(
-    params: Dict[Any, Any], readme: Dict[Any, Any], config: Dict[Any, Any]
-) -> Dict[Any, Any]:
-    """Lets the user enter holidays parameters.
-
-    Parameters
-    ----------
-    params : Dict
-        Model parameters.
-    readme : Dict
-        Dictionary containing tooltips to guide user's choices.
-    config : Dict
-        Dictionary where user can provide the list of countries whose holidays will be included.
-
-    Returns
-    -------
-    dict
-        Model parameters with holidays parameters added.
-    """
-    countries = list(COUNTRY_NAMES_MAPPING.keys())
-    default_country = config["model"]["holidays_country"]
-    country = st.selectbox(
-        label="Select a country",
-        options=countries,
-        index=countries.index(default_country),
-        format_func=lambda x: COUNTRY_NAMES_MAPPING[x],
-        help=readme["tooltips"]["holidays_country"],
-    )
-
-    public_holidays = st.checkbox(
-        label="Public holidays",
-        value=config["model"]["public_holidays"],
-        help=readme["tooltips"]["public_holidays"],
-    )
-
-    school_holidays = False
-    if country in SCHOOL_HOLIDAYS_FUNC_MAPPING.keys():
-        school_holidays = st.checkbox(
-            label="School holidays",
-            value=config["model"]["school_holidays"],
-            help=readme["tooltips"]["school_holidays"],
-        )
-
-    lockdowns = []
-    if country in COVID_LOCKDOWN_DATES_MAPPING.keys():
-        lockdown_options = list(range(len(COVID_LOCKDOWN_DATES_MAPPING[country])))
-        lockdowns = st.multiselect(
-            label="Lockdown events",
-            options=lockdown_options,
-            default=config["model"]["lockdown_events"],
-            format_func=lockdown_format_func,
-            help=readme["tooltips"]["lockdown_events"],
-        )
-
-    params["holidays"] = {
-        "country": country,
-        "public_holidays": public_holidays,
-        "school_holidays": school_holidays,
-        "lockdown_events": lockdowns,
-    }
-    return params
-
 
 def input_regressors(
     df: pd.DataFrame, config: Dict[Any, Any], params: Dict[Any, Any], readme: Dict[Any, Any]
