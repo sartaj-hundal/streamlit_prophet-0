@@ -1,2 +1,3 @@
 -r https://raw.githubusercontent.com/snowflakedb/snowflake-connector-python/main/tested_requirements/requirements_310.reqs
 plotly==5.13.0
+prophet==1.1.2
