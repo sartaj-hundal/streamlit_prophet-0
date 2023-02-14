@@ -35,7 +35,6 @@ from lib.inputs.dates import (
 )
 from lib.inputs.eval import input_metrics, input_scope_eval
 from lib.inputs.params import (
-    input_holidays_params,
     input_other_params,
     input_prior_scale_params,
     input_regressors,
