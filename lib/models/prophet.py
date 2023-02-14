@@ -7,7 +7,7 @@ from lib.dataprep.clean import exp_transform
 from lib.dataprep.format import check_future_regressors_df
 from lib.dataprep.split import make_eval_df, make_future_df
 from lib.exposition.preparation import get_df_cv_with_hist
-from lib.models.preparation import add_prophet_holidays, get_prophet_cv_horizon
+from lib.models.preparation import get_prophet_cv_horizon
 from lib.utils.logging import suppress_stdout_stderr
 
 
