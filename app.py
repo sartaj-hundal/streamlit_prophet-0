@@ -75,13 +75,13 @@ cs = conn.cursor()
 #cs.close()
 
 try:
-    #cs.execute("SELECT * FROM MODEL_DATA LIMIT 10;")
-    cs.execute("SELECT CURRENT_DATABASE();")
-    #df = pd.DataFrame(cs.fetchall(), columns = ['DATE', 'SALES'])
-    #max_sales = df['SALES'].max()
-    #st.write(max_sales)
-    row = cs.fetchall()
-    st.write(row)
+    cs.execute("SELECT * FROM MODEL_DATA LIMIT 10;")
+    #cs.execute("SELECT CURRENT_DATABASE();")
+    df = pd.DataFrame(cs.fetchall(), columns = ['DATE', 'SALES'])
+    max_sales = df['SALES'].max()
+    st.write(max_sales)
+    #row = cs.fetchall()
+    #st.write(row)
 
 finally:
     cs.close()
