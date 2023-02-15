@@ -2,6 +2,7 @@ from typing import Any, Dict, List
 
 import snowflake.connector
 import matplotlib.pyplot as plt
+import numpy as np
 
 import pandas as pd
 import streamlit as st
