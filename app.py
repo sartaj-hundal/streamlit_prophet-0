@@ -1,5 +1,51 @@
-import streamlit as st
+from typing import Any, Dict, List
+
 import snowflake.connector
+
+import pandas as pd
+import streamlit as st
+from streamlit_prophet.lib.dataprep.clean import clean_df
+from streamlit_prophet.lib.dataprep.format import (
+    add_cap_and_floor_cols,
+    check_dataset_size,
+    filter_and_aggregate_df,
+    format_date_and_target,
+    format_datetime,
+    print_empty_cols,
+    print_removed_cols,
+    remove_empty_cols,
+    resample_df,
+)
+from streamlit_prophet.lib.dataprep.split import get_train_set, get_train_val_sets
+from streamlit_prophet.lib.exposition.export import display_links, display_save_experiment_button
+from streamlit_prophet.lib.exposition.visualize import (
+    plot_components,
+    plot_future,
+    plot_overview,
+    plot_performance,
+)
+from streamlit_prophet.lib.inputs.dataprep import input_cleaning, input_dimensions, input_resampling
+from streamlit_prophet.lib.inputs.dataset import (
+    input_columns,
+    input_dataset,
+    input_future_regressors,
+)
+from streamlit_prophet.lib.inputs.dates import (
+    input_cv,
+    input_forecast_dates,
+    input_train_dates,
+    input_val_dates,
+)
+from streamlit_prophet.lib.inputs.eval import input_metrics, input_scope_eval
+from streamlit_prophet.lib.inputs.params import (
+    input_holidays_params,
+    input_other_params,
+    input_prior_scale_params,
+    input_regressors,
+    input_seasonality_params,
+)
+from streamlit_prophet.lib.models.prophet import forecast_workflow
+from streamlit_prophet.lib.utils.load import load_config, load_image
 
 # Initialize connection.
 # Uses st.cache_resource to only run once.
@@ -20,10 +66,20 @@ def run_query(query):
         return cur.fetchall()
 
 cs = conn.cursor()
+#try:
+#    cs.execute("SELECT current_version()")
+#    one_row = cs.fetchone()
+#    st.write(one_row[0])
+#finally:
+#    cs.close()
+#cs.close()
+
 try:
-    cs.execute("SELECT current_version()")
-    one_row = cs.fetchone()
-    st.write(one_row[0])
+    cs.execute("SELECT * FROM MODEL_DATA LIMIT 10;")
+    df = pd.DataFrame(cs.fetchall(), columns = ['DATE', 'SALES'])
+    max_sales = df['SALES'].max()
+    st.write(max_sales)
+
 finally:
     cs.close()
 cs.close()
