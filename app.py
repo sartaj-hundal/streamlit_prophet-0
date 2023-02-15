@@ -76,7 +76,8 @@ cs = conn.cursor()
 
 try:
     #cs.execute("SELECT * FROM MODEL_DATA LIMIT 10;")
-    cs.execute("USE DATABASE DPC_DEV; SELECT CURRENT_DATABASE();")
+    cs.execute("USE DATABASE DPC_DEV;")
+    cs.execute("SELECT CURRENT_DATABASE();")
     #df = pd.DataFrame(cs.fetchall(), columns = ['DATE', 'SALES'])
     #max_sales = df['SALES'].max()
     #st.write(max_sales)
