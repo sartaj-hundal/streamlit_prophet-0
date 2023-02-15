@@ -76,12 +76,12 @@ cs = conn.cursor()
 
 try:
     #cs.execute("SELECT * FROM MODEL_DATA LIMIT 10;")
-    cs.execute("SHOW TABLES;")
+    cs.execute("SHOW DATABASES;")
     #df = pd.DataFrame(cs.fetchall(), columns = ['DATE', 'SALES'])
     #max_sales = df['SALES'].max()
     #st.write(max_sales)
-    one_row = cs.fetchone()
-    st.write(one_row[0])
+    row = cs.fetchall()
+    st.write(row)
 
 finally:
     cs.close()
