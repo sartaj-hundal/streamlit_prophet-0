@@ -1,6 +1,7 @@
 from typing import Any, Dict, List
 
 import snowflake.connector
+import matplotlib.pyplot as plt
 
 import pandas as pd
 import streamlit as st
@@ -74,6 +75,12 @@ cs = conn.cursor()
 #    cs.close()
 #cs.close()
 
+arr = np.random.normal(1, 1, size=100)
+fig, ax = plt.subplots()
+ax.hist(arr, bins=20)
+
+st.pyplot(fig)
+
 try:
     cs.execute("SELECT date, sales FROM MODEL_DATA LIMIT 10;")
     df = pd.DataFrame(cs.fetchall(), columns = ['DATE', 'SALES'])
@@ -83,8 +90,6 @@ try:
     df['ds'] = df['DATE']
     df['y'] = df['SALES']
     df.set_index('DATE')
-
-
 
 finally:
     cs.close()
