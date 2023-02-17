@@ -96,7 +96,7 @@ try:
     df.set_index('DATE')
     df.asfreq('D')
 
-    m.fit(df[df['DATA_SPLIT'] == 'TRAIN'])
+    #m.fit(df[df['DATA_SPLIT'] == 'TRAIN'])
 
 
 
