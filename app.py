@@ -3,6 +3,7 @@ from typing import Any, Dict, List
 import snowflake.connector
 import matplotlib.pyplot as plt
 import numpy as np
+import prophet
 
 import pandas as pd
 import streamlit as st
@@ -82,15 +83,22 @@ ax.hist(arr, bins=20)
 
 st.pyplot(fig)
 
+m = prophet.Prophet()
+
 try:
-    cs.execute("SELECT date, sales FROM MODEL_DATA LIMIT 10;")
-    df = pd.DataFrame(cs.fetchall(), columns = ['DATE', 'SALES'])
-    max_sales = df['SALES'].max()
-    st.write(max_sales)
+    cs.execute("SELECT DATE, SALES, DATA_SPLIT FROM MODEL_DATA;")
+    df = pd.DataFrame(cs.fetchall(), columns = ['DATE', 'SALES', 'DATA_SPLIT'])
+    #max_sales = df['SALES'].max()
+    #st.write(max_sales)
 
     df['ds'] = df['DATE']
     df['y'] = df['SALES']
     df.set_index('DATE')
+    df.asfreq('D')
+
+    m.fit(df[df['DATA_SPLIT'] == 'TRAIN'])
+
+
 
 finally:
     cs.close()
