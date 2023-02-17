@@ -93,8 +93,9 @@ try:
 
     #df['ds'] = df['DATE']
     #df['y'] = df['SALES']
-    df.columns = ['ds', 'y']
-    df['ds'] = pd.to_datetime(df['ds'])
+    #df.columns = ['ds', 'y']
+    df['ds'] = pd.to_datetime(df['DATE'])
+    df['y'] = df['SALES']
 
     # split data 
     train = df[df['ds'] < pd.Timestamp('2016-03-23')]
