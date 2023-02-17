@@ -77,11 +77,11 @@ cs = conn.cursor()
 #    cs.close()
 #cs.close()
 
-arr = np.random.normal(1, 1, size=100)
-fig, ax = plt.subplots()
-ax.hist(arr, bins=20)
+#arr = np.random.normal(1, 1, size=100)
+#fig, ax = plt.subplots()
+#ax.hist(arr, bins=20)
 
-st.pyplot(fig)
+#st.pyplot(fig)
 
 m = prophet.Prophet()
 
@@ -104,6 +104,12 @@ try:
     st.write(len(test))
 
     m.fit(train)
+    future = m.make_future_dataframe(periods=40734)
+    forecast = m.predict(future)
+
+    fig_m = m.plot(forecast)
+    plt.legend(['Actual', 'Prediction', 'Uncertainty interval'])
+    plt.show()
     
     #df.set_index('DATE')
     #df.asfreq('D')
