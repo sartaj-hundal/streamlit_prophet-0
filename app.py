@@ -83,7 +83,7 @@ cs = conn.cursor()
 
 #st.pyplot(fig)
 
-m = prophet.Prophet()
+m = prophet.Prophet(daily_seasonality=True)
 
 try:
     cs.execute("SELECT DATE, SALES FROM MODEL_DATA;")
@@ -109,7 +109,9 @@ try:
 
     fig_m = m.plot(forecast)
     plt.legend(['Actual', 'Prediction', 'Uncertainty interval'])
-    plt.show()
+    #plt.show()
+
+    st.pyplot(fig_m)
     
     #df.set_index('DATE')
     #df.asfreq('D')
