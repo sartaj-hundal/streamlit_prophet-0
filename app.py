@@ -108,11 +108,14 @@ try:
     future = m.make_future_dataframe(periods=60)
     forecast = m.predict(future)
 
-    fig_m = m.plot(forecast)
-    plt.legend(['Actual', 'Prediction', 'Uncertainty interval'])
+
+    st.write(forecast.head())
+
+    #fig_m = m.plot(forecast)
+    #plt.legend(['Actual', 'Prediction', 'Uncertainty interval'])
     #plt.show()
 
-    st.pyplot(fig_m)
+    #st.pyplot(fig_m)
     
     #df.set_index('DATE')
     #df.asfreq('D')
