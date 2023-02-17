@@ -105,11 +105,11 @@ try:
     st.write(len(test))
 
     m.fit(train)
-    future = m.make_future_dataframe(periods=60)
-    forecast = m.predict(future)
+    #future = m.make_future_dataframe(periods=60)
+    #forecast = m.predict(future)
 
 
-    st.write(forecast.head())
+    #st.write(forecast.head())
 
     #fig_m = m.plot(forecast)
     #plt.legend(['Actual', 'Prediction', 'Uncertainty interval'])
