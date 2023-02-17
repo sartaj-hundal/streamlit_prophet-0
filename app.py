@@ -86,15 +86,27 @@ st.pyplot(fig)
 m = prophet.Prophet()
 
 try:
-    cs.execute("SELECT DATE, SALES, DATA_SPLIT FROM MODEL_DATA;")
-    df = pd.DataFrame(cs.fetchall(), columns = ['DATE', 'SALES', 'DATA_SPLIT'])
+    cs.execute("SELECT DATE, SALES FROM MODEL_DATA;")
+    df = pd.DataFrame(cs.fetchall(), columns = ['DATE', 'SALES'])
     #max_sales = df['SALES'].max()
     #st.write(max_sales)
 
-    df['ds'] = df['DATE']
-    df['y'] = df['SALES']
-    df.set_index('DATE')
-    df.asfreq('D')
+    #df['ds'] = df['DATE']
+    #df['y'] = df['SALES']
+    df.columns = ['ds', 'y']
+    ds['ds'] = pd.to_datetime(df['ds'])
+
+    # split data 
+    train = df[df['ds'] < pd.Timestamp('2016-03-23')]
+    test = df[df['ds'] >= pd.Timestamp('2016-03-23')]
+ 
+    st.write(len(train))
+    st.write(len(test))
+
+    m.fit(train)
+    
+    #df.set_index('DATE')
+    #df.asfreq('D')
 
     #m.fit(df[df['DATA_SPLIT'] == 'TRAIN'])
 
