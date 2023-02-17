@@ -104,7 +104,7 @@ try:
     st.write(len(test))
 
     m.fit(train)
-    future = m.make_future_dataframe(periods=40734)
+    future = m.make_future_dataframe(periods=60)
     forecast = m.predict(future)
 
     fig_m = m.plot(forecast)
